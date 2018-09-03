@@ -1,0 +1,121 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--boorstrp lib-->
+  <link rel="stylesheet" href="{% static 'login/bootstrap/bootstrap.css' %}">
+    <script src="{% static 'login/bootstrap/jquery.js' %}"></script>
+    <script src="{% static 'login/bootstrap/bootstrap.js' %}"></script>
+  <!--boorstrp lib end-->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <script src="{% static 'login/loginjs/jquery.min.js' %}"></script>
+ <script src="{% static 'login/loginjs/bootstrap.min.js' %}"></script>
+ <link rel="stylesheet" type="text/css" href="{% static 'login/loginjs/jquery.datatable.css' %}">
+
+<script type="text/javascript" charset="utf8" src="{% static 'login/loginjs/jquery.datatable.js' %}"></script>
+<script type="text/javascript" charset="utf-8" src="{% static 'login/loginjs/loginjs.js' %}"></script>
+<script type="text/javascript" charset="utf-8" src="{% static 'login/loginjs/json.js' %}"></script>
+
+  <link rel='stylesheet' type="text/css" href="{% static 'login/logout.css' %}">
+</head>
+<body>
+ <div class='container-fluid well text-left span12'>
+   <div class='container-fluid '>
+    <h1>OOKLA<h1>
+    </div>
+
+    <div class='container-fluid '>
+      <h2>Reporting </h2>
+
+    </div>
+
+    <div class='container-fluid '>
+      <div class='col-sm-4 span12'>
+        <div class="dropdown col-lg-6 ">
+        <button class="btn-primary dropdown-toggle btnsize" type="button" data-toggle="dropdown">Clients
+    <span class="caret"></span></button>
+    <ul class="dropdown-hosts" id="clients">
+
+    </ul>
+  </div>
+  <div class="dropdown col-lg-4 btn-size">
+    <button class="btn-primary dropdown-toggle btnsize" type="button" data-toggle="dropdown">ISP Servers
+      <span class="caret"></span></button>
+      <ul class="dropdown-hosts" id="servers">
+
+      </ul>
+  </div>
+      </div>
+
+      <div class='col-lg-4'>
+      </div>
+
+      <div class='col-lg-4 btn-group btnleftdiv'>
+        <button type="button" class="btn btn-info">
+    <span class="glyphicon glyphicon-search"></span> Daily
+  </button>
+  <button type="button" class="btn btn-info">
+    <span class="glyphicon glyphicon-search"></span> Downloading
+  </button>
+  <button type="button" class="btn btn-info">
+    <span class="glyphicon glyphicon-search"></span> Searchs
+  </button>
+
+      </div>
+
+    </div>
+
+    <div class='container-fluid span12 datatablediv' id='datatablediv'>
+
+    <table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Column 1<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 2<span class="glyphicon glyphicon-star"></span></th>
+            <th>Column 3<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 4<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 5<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 6<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 7<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 8<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 9<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 10<span class="glyphicon glyphicon-search"></span></th>
+            <th>Column 11<span class="glyphicon glyphicon-search"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for i in object_list %}
+        <tr>
+            <td>{{i.someAttr1}}</td>
+            <td>{{i.someAttr2}}</td>
+            <td>{{i.someAttr3}}</td>
+            <td>{{i.someAttr4}}</td>
+            <td>{{i.someAttr5}}</td>
+            <td>{{i.someAttr6}}</td>
+            <td>{{i.someAttr7}}</td>
+            <td>{{i.someAttr8}}</td>
+            <td>{{i.someAttr9}}</td>
+            <td>{{i.someAttr10}}</td>
+            <td>{{i.someAttr11}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+    </div>
+
+    <div class='container' id='demo'>
+
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

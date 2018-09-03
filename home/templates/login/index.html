@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<HTML>
+<HEAD>
+  <link rel='stylesheet' type="text/css" href="{% static 'login/login.css' %}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--boorstrp lib-->
+  <link rel="stylesheet" href="{% static 'login/bootstrap/bootstrap.css' %}">
+    <script src="{% static 'login/bootstrap/jquery.js' %}}"></script>
+    <script src="{% static 'login/bootstrap/bootstrap.js' %}"></script>
+  <!--boorstrp lib end-->
+
+
+</HEAD>
+<BODY>
+  <div class="container">
+    <div class="row">
+        <div align="center">
+            <div style="max-width: 400px; background-color: blueviolet;">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: blueviolet;">
+                    <div class="col-md-8 col-sm-8 col-xs-12" style="background-color: darkcyan;">
+
+<H1>login</H1>
+
+<FORM action="{% url 'loginpost' %}" method="post">
+  {% csrf_token %}
+    {{ form.as_table}}
+    <INPUT TYPE="submit" value='login'>
+</FORM>
+</div>
+                   <div class="col-md-4 col-sm-4 col-xs-12" style="background-color: blue;">
+                       <p style="color: white;">More content</p>
+                   </div>
+                   this web application will help you to find network health of your office
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+</BODY>
+</HTML>
