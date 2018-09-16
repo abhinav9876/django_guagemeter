@@ -20,13 +20,17 @@
 <script type="text/javascript" charset="utf8" src="{% static 'login/loginjs/jquery.datatable.js' %}"></script>
 <script type="text/javascript" charset="utf-8" src="{% static 'login/loginjs/loginjs.js' %}"></script>
 <script type="text/javascript" charset="utf-8" src="{% static 'login/loginjs/json.js' %}"></script>
+<script type="text/javascript" charset="utf-8" src="{% static 'login/loginjs/test.js' %}"></script>
 
   <link rel='stylesheet' type="text/css" href="{% static 'login/logout.css' %}">
+
+<!-- speed-->
+
 </head>
 <body>
  <div class='container-fluid well text-left span12'>
    <div class='container-fluid '>
-    <h1>OOKLA<h1>
+    <h1>OPEN SOURCE<h1>
     </div>
 
     <div class='container-fluid '>
@@ -37,18 +41,19 @@
     <div class='container-fluid '>
       <div class='col-sm-4 span12'>
         <div class="dropdown col-lg-6 ">
-        <button class="btn-primary dropdown-toggle btnsize" type="button" data-toggle="dropdown">Clients
+        <button class="btn-primary dropdown-toggle btnsize" type="button" data-toggle="dropdown">download
     <span class="caret"></span></button>
     <ul class="dropdown-hosts" id="clients">
 
     </ul>
   </div>
-  <div class="dropdown col-lg-4 btn-size">
-    <button class="btn-primary dropdown-toggle btnsize" type="button" data-toggle="dropdown">ISP Servers
-      <span class="caret"></span></button>
-      <ul class="dropdown-hosts" id="servers">
-
-      </ul>
+  <div class="button col-lg-4 btn-size">
+    <FORM action="{% url 'app' %}" method="post">
+      {% csrf_token %}
+    <button  type="submit" class="btn-primary  btnsize"  type="button" >
+      download app
+      </button>
+    </form>
   </div>
       </div>
 
@@ -75,36 +80,37 @@
     <table id="table_id" class="display">
     <thead>
         <tr>
-            <th>Column 1<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 2<span class="glyphicon glyphicon-star"></span></th>
-            <th>Column 3<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 4<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 5<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 6<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 7<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 8<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 9<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 10<span class="glyphicon glyphicon-search"></span></th>
-            <th>Column 11<span class="glyphicon glyphicon-search"></span></th>
-        </tr>
+            <th>Server<span class="glyphicon glyphicon-search"></span></th>
+            <th>Last Tested<span class="glyphicon glyphicon-star"></span></th>
+            <th>Avg speed<span class="glyphicon glyphicon-search"></span></th>
+            <th>ping RTT<span class="glyphicon glyphicon-search"></span></th>
+            <th>Upload speed<span class="glyphicon glyphicon-search"></span></th>
+            <th>download speed<span class="glyphicon glyphicon-search"></span></th>
+
+            <th>Add<span class="glyphicon glyphicon-search"></span></th>
+
+            <th>Test<span class="glyphicon glyphicon-search"></span></th>
+
+            <th>history<span class="glyphicon glyphicon-search"></span></th>
+            <th>download<span class="glyphicon glyphicon-search"></span></th>
+            </tr>
     </thead>
     <tbody>
       {% for i in object_list %}
         <tr>
-            <td>{{i.someAttr1}}</td>
-            <td>{{i.someAttr2}}</td>
-            <td>{{i.someAttr3}}</td>
-            <td>{{i.someAttr4}}</td>
-            <td>{{i.someAttr5}}</td>
-            <td>{{i.someAttr6}}</td>
-            <td>{{i.someAttr7}}</td>
-            <td>{{i.someAttr8}}</td>
-            <td>{{i.someAttr9}}</td>
-            <td>{{i.someAttr10}}</td>
-            <td>{{i.someAttr11}}</td>
-        </tr>
+            <td>{{i.server}}</td>
+            <td>{{i.last_tested}}</td>
+            <td>{{i.avg_speed}}</td>
+            <td>{{i.ping_RTT}}</td>
+            <td>{{i.upload_speed}}</td>
+            <td>{{i.download_speed}}</td>
+            <td><span onclick="testadd(this)">add</span></td><!--this is saved in test.js-->
+            <td><span onclick="testspeed(this)">test</span></td>
+            <td><span onclick="testhistory(this)">history</span></td>
+            <td><a href='{{i.download}}'>download</a></td>
+          </tr>
         {% endfor %}
-
+      
     </tbody>
 </table>
     </div>
@@ -116,6 +122,9 @@
 
 
 </div>
+<div>
 
+
+</div>
 </body>
 </html>

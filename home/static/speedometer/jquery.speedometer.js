@@ -51,7 +51,7 @@ Options:
 			});
 			return $this;
 		}
-
+		var backpic=""
 		var def = {
 			/* If not specified, look in selector's innerHTML before defaulting to zero. */
 			percentage : $.trim( $this.html() ) || 0,
@@ -69,7 +69,7 @@ Options:
 				border: '0px',
 				fontFamily: 'Arial',
 				fontWeight: '900',
-				backgroundImage : "url('./background.jpg')"
+				backgroundImage : "url('/static/speedometer/background.jpg')"
 
 
 			},
@@ -104,7 +104,7 @@ Options:
 		/* out of range */
 		if ( def.limit && ( def.percentage > def.maximum || def.percentage < def.minimum ) ) {
 			/* the glass cracks */
-			$this.css( 'backgroundImage' , 'url("./background-broken.jpg")' );
+			$this.css( 'backgroundImage' , "url('/static/speedometer/background-broken.jpg')" );
 		} else {
 
 
