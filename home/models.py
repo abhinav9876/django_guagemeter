@@ -28,3 +28,20 @@ class Datatable(models.Model):
     upload_speed = models.CharField(max_length=30)
     download_speed = models.CharField(max_length=30)
     download = models.CharField(max_length=30)
+
+    def add_entry(test_data_list):
+        a = Datatable.objects.create()
+        a.server = test_data_list[0]
+        a.last_tested = test_data_list[1]
+        a.avg_speed = test_data_list[2]
+        a.ping_RTT = test_data_list[3]
+        a.upload_speed = test_data_list[4]
+        a.download_speed = test_data_list[5]
+        a.download = test_data_list[6]
+        a.save()
+    def check_entry(server_ip):
+        check = Datatable.objects.filter(server=server_ip)
+        test_num=""
+        if str(check) !=  "<QuerySet []>":
+            test_num = check.first().__dict__
+        return test_num
