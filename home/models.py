@@ -45,3 +45,27 @@ class Datatable(models.Model):
         if str(check) !=  "<QuerySet []>":
             test_num = check.first().__dict__
         return test_num
+class Test_history(models.Model):
+    server = models.CharField(max_length=30)
+    last_tested = models.CharField(max_length=30)
+    avg_speed = models.CharField(max_length=30)
+    ping_RTT = models.CharField(max_length=30)
+    upload_speed = models.CharField(max_length=30)
+    download_speed = models.CharField(max_length=30)
+    download = models.CharField(max_length=30)
+    def add_entry(test_data_list):
+        a = Test_history.objects.create()
+        a.server = test_data_list[0]
+        a.last_tested = test_data_list[1]
+        a.avg_speed = test_data_list[2]
+        a.ping_RTT = test_data_list[3]
+        a.upload_speed = test_data_list[4]
+        a.download_speed = test_data_list[5]
+        a.download = test_data_list[6]
+        a.save()
+    def check_entry(server_ip):
+        check = Test_history.objects.filter(server=server_ip)
+        test_num=""
+        if str(check) !=  "<QuerySet []>":
+            test_num = check.first().__dict__
+        return test_num

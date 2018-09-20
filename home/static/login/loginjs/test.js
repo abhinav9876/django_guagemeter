@@ -1,7 +1,7 @@
 function testadd(id){
-  var server = prompt("Enter server ip addr: ", "192.1.1.5");
+  var server = prompt("Enter server ip addr: ", "192.1.1.5",id);
 
-  var last_tested = '2_aug_1018';
+  var last_tested = '2_aug_2018';
   var avg_speed = '4.8';
   var ping_RTT = '6';
   var upload_speed = '3.7';
@@ -10,8 +10,9 @@ function testadd(id){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML ="hello"+ this.responseText;
+      //document.getElementById("demo").innerHTML ="hello"+ this.responseText+"{{ user1 }}";
     //  prompt("enter name","ame");
+    location.reload(true);
     }
   };
 
@@ -34,4 +35,27 @@ function testadd(id){
          // error! Do something
      //}
  //});
+}
+
+
+
+
+function testhistory(id,server){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("demo").innerHTML ="hello"+ this.responseText+"{{ user1 }}";
+    //  prompt("enter name","ame");
+    //location.reload(true);
+    document.getElementById("datatable_body").innerHTML = this.responseText;//server+"h";
+    document.getElementById("test_button").remove();
+    document.getElementById("test_histroy_button").remove();
+  }
+  };
+
+  xhttp.open("GET","test_history/"+server+"/", true);
+  xhttp.send();
+
+
+
 }

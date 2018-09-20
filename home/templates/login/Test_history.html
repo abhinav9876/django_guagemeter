@@ -1,0 +1,12 @@
+{% for i in object_list %}
+  <tr>
+      <td>{{i.server}}</td>
+      <td>{{i.last_tested}}</td>
+      <td>{{i.avg_speed}}</td>
+      <td>{{i.ping_RTT}}</td>
+      <td>{{i.upload_speed}}</td>
+      <td>{{i.download_speed}}</td>
+    
+
+    </tr>
+  {% endfor %}

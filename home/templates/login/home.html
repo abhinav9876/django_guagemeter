@@ -34,18 +34,17 @@
     </div>
 
     <div class='container-fluid '>
-      <h2>Reporting </h2>
+
 
     </div>
 
     <div class='container-fluid '>
       <div class='col-sm-4 span12'>
         <div class="dropdown col-lg-6 ">
-        <button class="btn-primary dropdown-toggle btnsize" type="button" data-toggle="dropdown">download
-    <span class="caret"></span></button>
-    <ul class="dropdown-hosts" id="clients">
+        <button class="btn-primary dropdown-toggle btnsize" type="button" onclick="testadd(this)">
+          Add server
+  </button>
 
-    </ul>
   </div>
   <div class="button col-lg-4 btn-size">
     <FORM action="{% url 'app' %}" method="post">
@@ -59,7 +58,7 @@
 
       <div class='col-lg-4'>
       </div>
-
+<!--
       <div class='col-lg-4 btn-group btnleftdiv'>
         <button type="button" class="btn btn-info">
     <span class="glyphicon glyphicon-search"></span> Daily
@@ -72,7 +71,7 @@
   </button>
 
       </div>
-
+-->
     </div>
 
     <div class='container-fluid span12 datatablediv' id='datatablediv'>
@@ -83,19 +82,20 @@
             <th>Server<span class="glyphicon glyphicon-search"></span></th>
             <th>Last Tested<span class="glyphicon glyphicon-star"></span></th>
             <th>Avg speed<span class="glyphicon glyphicon-search"></span></th>
-            <th>ping RTT<span class="glyphicon glyphicon-search"></span></th>
+            <th>Ping RTT<span class="glyphicon glyphicon-search"></span></th>
             <th>Upload speed<span class="glyphicon glyphicon-search"></span></th>
-            <th>download speed<span class="glyphicon glyphicon-search"></span></th>
-
+            <th>Download speed<span class="glyphicon glyphicon-search"></span></th>
+            <!--
             <th>Add<span class="glyphicon glyphicon-search"></span></th>
+          -->
 
-            <th>Test<span class="glyphicon glyphicon-search"></span></th>
+            <th id="test_button">Test<span class="glyphicon glyphicon-search"></span></th>
 
-            <th>history<span class="glyphicon glyphicon-search"></span></th>
-            <th>download<span class="glyphicon glyphicon-search"></span></th>
+            <th id="test_histroy_button">History<span class="glyphicon glyphicon-search"></span></th>
+
             </tr>
     </thead>
-    <tbody>
+    <tbody id="datatable_body">
       {% for i in object_list %}
         <tr>
             <td>{{i.server}}</td>
@@ -104,10 +104,11 @@
             <td>{{i.ping_RTT}}</td>
             <td>{{i.upload_speed}}</td>
             <td>{{i.download_speed}}</td>
-            <td><span onclick="testadd(this)">add</span></td><!--this is saved in test.js-->
-            <td><span onclick="testspeed(this)">test</span></td>
-            <td><span onclick="testhistory(this)">history</span></td>
-            <td><a href='{{i.download}}'>download</a></td>
+          <!--  <td><span onclick="testadd(this)">add</span></td>--><!--this is saved in test.js-->
+            <td><button onclick='testspeed(this,"abc")' value="{{i.server}}">Test</button></td>
+
+            <td><button onclick="testhistory(this,'{{i.server}}')">History</Button></td>
+
           </tr>
         {% endfor %}
 

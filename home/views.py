@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.template import loader
 from .form import loginForm
-from .models import user, Datatable
+from .models import user, Datatable, Test_history
 from filetransfers.api import serve_file
 from wsgiref.util import FileWrapper
 import json
@@ -24,6 +24,8 @@ class login_controller:
             if form.is_valid():
                 email = request.POST['email']
                 password = request.POST['password']
+
+
                 user1, loggedIn = user.isLoggedIn(email, password)
                 #isLogged is user defined function to check user in db
                 if loggedIn:
@@ -53,6 +55,18 @@ class login_controller:
             test_data_list = pk.split(";")
             if Datatable.check_entry(test_data_list[0]) == "":
                 Datatable.add_entry(test_data_list)
+
             else:
                 print("already present")
-        return render(request, "download/download.txt")
+        Test_history.add_entry(test_data_list)
+        object_list = Datatable.objects.all() #or any kind of queryset
+        return render(request,"login/home.html",{'object_list':object_list,'server_url':'server_ajax'})
+        #return render(request, "download/download.txt")
+
+    #test_history show history result whenever someone click on "hsitory" button
+    def test_history(request, pk):
+        if request.method == 'GET':
+            server_id = pk
+            object_list = Test_history.objects.filter(server = server_id)
+            return render(request,"login/Test_history.html",
+                {'object_list':object_list})
