@@ -39,7 +39,7 @@ class login_controller:
 
     #speedometer logic
     def speedometer(request):
-        return render(request,"login/speedometer.html")
+        return render(request,"login/speed_test.html")
 
 
     #whenever you click on 'download app' button in home page it redirect here
@@ -70,3 +70,19 @@ class login_controller:
             object_list = Test_history.objects.filter(server = server_id)
             return render(request,"login/Test_history.html",
                 {'object_list':object_list})
+
+    #test_show shows the download speed and download speed in gaugemeter
+    def test_show(request):
+
+        #if request.method == 'GET':
+        #    download_speed,upload_speed = pk.split(";")
+        #    print("hello oooqq ",download_speed)
+        #   return render(request,"login/speed_test.html",
+        #        {'download_speed':download_speed,'upload_speed':upload_speed})
+        if request.method == 'POST':
+                test_value = request.POST.get('test_value1','')
+                test_value = str(test_value)
+                print(type(test_value),test_value,"qwqwqwqwqwqw")
+                download_speed,upload_speed = test_value.split(';')
+                return render(request,"login/speed_test.html",
+                    {'download_speed':download_speed,'upload_speed':upload_speed})

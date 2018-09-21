@@ -1,0 +1,80 @@
+{% load staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+
+	<style>
+
+
+	</style>
+  <!--boorstrp lib-->
+  <link rel="stylesheet" href="{% static 'login/bootstrap/bootstrap.css' %}">
+    <script src="{% static 'login/bootstrap/jquery.js' %}"></script>
+    <script src="{% static 'login/bootstrap/bootstrap.js' %}"></script>
+  <!--boorstrp lib end-->
+	<script src="{% static 'speedometer/jquery-1.4.min.js' %}"></script>
+
+
+	<script src="{% static 'speedometer/jquery.speedometer.js' %}"></script>
+	<script src="{% static 'speedometer/jquery.jqcanvas-modified.js' %}"></script>
+	<script src="{% static 'speedometer/excanvas-modified.js' %}"></script>
+
+
+	<script>
+
+  $(function(){
+    $('#test').speedometer();
+
+    $('.changeSpeedometer').click(function(){
+      $('#test').speedometer({ percentage: $('.speedometer').val() || 0 });
+    });
+
+  });
+
+  $(function(){
+    $('#test1').speedometer();
+
+    $('.changeSpeedometer1').click(function(){
+      $('#test1').speedometer({ percentage: $('.speedometer1').val() || 0 });
+    });
+
+  });
+
+
+	</script>
+
+
+	</head>
+
+	<body>NETWORK SPEED
+    <div style="height:600px;width:100%">
+<DIV CLASS="row" style="vertical-align: middle;">
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4">
+		<input type="hidden" class="speedometer"  value="90"></input>
+
+
+
+		<div id="test" script="background-image:url({% static 'speedometer/background.jpg' %}">
+		{{download_speed}}
+		</div>
+<h3>Download Speed<h3>
+</div>
+<div class="col-lg-4">
+
+    <input type="hidden" class="speedometer1"  value="90"></input>
+
+
+
+    <div id="test1" script="background-image:url({% static 'speedometer/background.jpg' %}">
+    {{upload_speed}}
+    </div>
+    <h3>Upload Speed<h3>
+</div>
+</div>
+</div>
+</body>
+</html>

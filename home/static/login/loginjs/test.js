@@ -59,3 +59,22 @@ function testhistory(id,server){
 
 
 }
+
+
+
+function testspeed(id,download_speed,upload_speed){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("demo").innerHTML ="hello"+ this.responseText+"{{ user1 }}";
+    //  prompt("enter name","ame");
+    //location.reload(true);
+    document.getElementById("datatablediv").innerHTML = this.responseText;;
+  }
+  };
+
+  xhttp.open("GET","test_show/"+download_speed+";"+upload_speed+"/", true);
+  xhttp.send();
+
+
+}

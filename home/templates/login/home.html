@@ -46,12 +46,19 @@
   </button>
 
   </div>
-  <div class="button col-lg-4 btn-size">
+  <div class="button col-lg-4 btn-size dropdown">
     <FORM action="{% url 'app' %}" method="post">
       {% csrf_token %}
-    <button  type="submit" class="btn-primary  btnsize"  type="button" >
-      download app
+  <button  type="submit" class="btn-primary btnsize dropbtn"  type="button" >
+        download app
       </button>
+      <div class="dropdown-content">
+    <a href="#">Window</a>
+    <a href="#">Linux</a>
+
+  </div>
+
+
     </form>
   </div>
       </div>
@@ -88,7 +95,6 @@
             <!--
             <th>Add<span class="glyphicon glyphicon-search"></span></th>
           -->
-
             <th id="test_button">Test<span class="glyphicon glyphicon-search"></span></th>
 
             <th id="test_histroy_button">History<span class="glyphicon glyphicon-search"></span></th>
@@ -105,7 +111,14 @@
             <td>{{i.upload_speed}}</td>
             <td>{{i.download_speed}}</td>
           <!--  <td><span onclick="testadd(this)">add</span></td>--><!--this is saved in test.js-->
-            <td><button onclick='testspeed(this,"abc")' value="{{i.server}}">Test</button></td>
+
+            <td>
+              <FORM action="{% url 'test_show' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{i.download_speed}};{{i.upload_speed}}" id="test_value1" placeholder="Username" name="test_value1">
+              <button type="submit" >Test</button>
+            </FORM>
+            </td>
 
             <td><button onclick="testhistory(this,'{{i.server}}')">History</Button></td>
 

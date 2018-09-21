@@ -59,7 +59,7 @@ Options:
 			limit: true,
 			minimum: 0,
 			maximum: 100,
-			suffix: ' %',
+			suffix: 'mb/s',
 			animate:true,
 			thisCss: {
 				position: 'relative', /* Very important to align needle with gague. */
@@ -86,7 +86,7 @@ Options:
 				position:'absolute',
 				textAlign:'center',
 				top:'65px',
-				width:'60px',
+				width:'70px',
 				zIndex:'10',
 				lineHeight:'20px',
 				overflow:'hidden'
