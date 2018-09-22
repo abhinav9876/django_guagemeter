@@ -50,6 +50,7 @@ function testhistory(id,server){
     document.getElementById("datatable_body").innerHTML = this.responseText;//server+"h";
     document.getElementById("test_button").remove();
     document.getElementById("test_histroy_button").remove();
+    document.getElementById("test_delete").remove();
   }
   };
 
@@ -69,7 +70,7 @@ function testspeed(id,download_speed,upload_speed){
       //document.getElementById("demo").innerHTML ="hello"+ this.responseText+"{{ user1 }}";
     //  prompt("enter name","ame");
     //location.reload(true);
-    document.getElementById("datatablediv").innerHTML = this.responseText;;
+    document.getElementById("datatablediv").innerHTML = "hello"+this.responseText;
   }
   };
 
@@ -77,4 +78,19 @@ function testspeed(id,download_speed,upload_speed){
   xhttp.send();
 
 
+}
+
+
+function testdelete(id,server_id){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+    location.reload(true);
+
+  }
+  };
+
+  xhttp.open("GET","test_delete/"+server_id+"/", true);
+  xhttp.send();
 }

@@ -4,11 +4,16 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--boorstrp lib-->
-  <link rel="stylesheet" href="{% static 'login/bootstrap/bootstrap.css' %}">
-    <script src="{% static 'login/bootstrap/jquery.js' %}"></script>
-    <script src="{% static 'login/bootstrap/bootstrap.js' %}"></script>
-  <!--boorstrp lib end-->
+  {# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +31,8 @@
 
 <!-- speed-->
 
+<script type="text/javascript" charset="utf-8" src="{% static 'download_app/download.js' %}"></script>
+<!--download app for window and linux-->
 </head>
 <body>
  <div class='container-fluid well text-left span12'>
@@ -42,24 +49,24 @@
       <div class='col-sm-4 span12'>
         <div class="dropdown col-lg-6 ">
         <button class="btn-primary dropdown-toggle btnsize" type="button" onclick="testadd(this)">
-          Add server
+          Add Server
   </button>
 
   </div>
   <div class="button col-lg-4 btn-size dropdown">
-    <FORM action="{% url 'app' %}" method="post">
+   <FORM action="{% url 'app' %}" method="post" id="download_form">
       {% csrf_token %}
   <button  type="submit" class="btn-primary btnsize dropbtn"  type="button" >
-        download app
+        Download App
       </button>
       <div class="dropdown-content">
-    <a href="#">Window</a>
-    <a href="#">Linux</a>
-
+    <span type="submit" id="window_app" onclick="download_exe(this,'window')">Window</span>
+    <span id="linux_app" onclick="download_exe(this,'linux')">Linux</span>
+    <input type="hidden" name="download_exe_platform" id="download_exe_platform" placeholder="window">
   </div>
 
 
-    </form>
+   </form>
   </div>
       </div>
 
@@ -86,19 +93,19 @@
     <table id="table_id" class="display">
     <thead>
         <tr>
-            <th>Server<span class="glyphicon glyphicon-search"></span></th>
-            <th>Last Tested<span class="glyphicon glyphicon-star"></span></th>
-            <th>Avg speed<span class="glyphicon glyphicon-search"></span></th>
-            <th>Ping RTT<span class="glyphicon glyphicon-search"></span></th>
-            <th>Upload speed<span class="glyphicon glyphicon-search"></span></th>
-            <th>Download speed<span class="glyphicon glyphicon-search"></span></th>
+            <th>Server <span class="glyphicon glyphicon-search"></span></th>
+            <th>Last Tested <span class="glyphicon glyphicon-star"></span></th>
+            <th>Avg Speed <span class="glyphicon glyphicon-search"></span></th>
+            <th>Ping RTT <span class="glyphicon glyphicon-search"></span></th>
+            <th>Upload Speed <span class="glyphicon glyphicon-search"></span></th>
+            <th>Download Speed <span class="glyphicon glyphicon-search"></span></th>
             <!--
             <th>Add<span class="glyphicon glyphicon-search"></span></th>
           -->
-            <th id="test_button">Test<span class="glyphicon glyphicon-search"></span></th>
+            <th id="test_button">Test <span class="glyphicon glyphicon-search"></span></th>
 
-            <th id="test_histroy_button">History<span class="glyphicon glyphicon-search"></span></th>
-
+            <th id="test_histroy_button">History <span class="glyphicon glyphicon-search"></span></th>
+            <th id="test_delete">Delete</th>
             </tr>
     </thead>
     <tbody id="datatable_body">
@@ -121,7 +128,7 @@
             </td>
 
             <td><button onclick="testhistory(this,'{{i.server}}')">History</Button></td>
-
+              <td><button onclick="testdelete(this,'{{i.server}}')">Delete</button></td>
           </tr>
         {% endfor %}
 

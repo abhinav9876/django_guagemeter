@@ -25,7 +25,7 @@ SECRET_KEY = 'we5dz%wr-r56n3+%_g_9i+lt1(r0l&=u=*(e)+wfu4r&b+042s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = ['172.17.0.3']
+#ALLOWED_HOSTS = ['9620e764.ngrok.io']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'home',
-    'filetransfers'
+    'filetransfers',
+    'bootstrap3'
 ]
 
 MIDDLEWARE = [

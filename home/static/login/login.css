@@ -2,3 +2,7 @@ body{
 
   background: #00FF00;
 }
+
+.login_form input{
+  border-radius: 10px;
+}

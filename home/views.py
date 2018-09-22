@@ -44,8 +44,14 @@ class login_controller:
 
     #whenever you click on 'download app' button in home page it redirect here
     def app(request):
-        response = HttpResponse(content_type='application/zip')
-        response['Content-Disposition'] = 'attachment; filename=download.zip'
+        platform = request.POST.get('download_exe_platform','')
+        #response = HttpResponse(content_type='application/zip')
+
+        response = HttpResponse(content_type='application/force-download')
+        if platform == "window":
+            response['Content-Disposition'] = 'attachment; filename=window_iqperf.exe'
+        else:
+            response['Content-Disposition'] = 'attachment; filename=linux_iqperf.exe'
         return response
 
 
@@ -82,7 +88,13 @@ class login_controller:
         if request.method == 'POST':
                 test_value = request.POST.get('test_value1','')
                 test_value = str(test_value)
-                print(type(test_value),test_value,"qwqwqwqwqwqw")
                 download_speed,upload_speed = test_value.split(';')
                 return render(request,"login/speed_test.html",
                     {'download_speed':download_speed,'upload_speed':upload_speed})
+
+    def test_delete(request, pk):
+        if request.method == 'GET':
+            server_id = pk
+            object_list = Test_history.objects.filter(server = server_id).delete()
+            object_list1 = Datatable.objects.filter(server = server_id).delete()
+            return HttpResponse("delete all entry of server id")
